@@ -1,0 +1,11 @@
+Critère,AWS,Azure,Autre offre,Preuve/URL,date vérification
+Registre d'images,ECR,ACR,À renseigner,,
+Service conteneur,ECS/Fargate,Container Apps,À renseigner,,
+Kubernetes managé,EKS,AKS,À renseigner,,
+PostgreSQL managé,RDS,Flexible Server,À renseigner,,
+Contrôle identité,IAM,RBAC/Entra ID,À renseigner,,
+Réseau privé,VPC,VNet,À renseigner,,
+Stockage objets,S3,Blob Storage,À renseigner,,
+Quota du compte pédagogique,À vérifier,À vérifier,À vérifier,,
+Coût mensuel à périmètre égal,À estimer,À estimer,À estimer,,
+Procédure de réversibilité,À documenter,À documenter,À documenter,,

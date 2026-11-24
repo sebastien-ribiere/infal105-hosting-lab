@@ -1,0 +1,51 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: guildops
+      POSTGRES_USER: guildops
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?copier .env.example en .env}
+    volumes:
+      - guildops-data:/var/lib/postgresql/data
+    networks:
+      - data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U guildops -d guildops"]
+      interval: 5s
+      timeout: 3s
+      retries: 15
+  api:
+    build: .
+    image: guildops-hosting-lab:local
+    restart: unless-stopped
+    environment:
+      DB_HOST: postgres
+      DB_PORT: "5432"
+      DB_NAME: guildops
+      DB_USER: guildops
+      DB_PASSWORD: ${DB_PASSWORD:?copier .env.example en .env}
+      LAB_RELEASE: ${LAB_RELEASE:-v1}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:8080:8080"
+    networks:
+      - data
+      - front
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    read_only: true
+    tmpfs: [/tmp]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/healthz', timeout=2)"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+volumes:
+  guildops-data:
+networks:
+  front:
+  data:
+    internal: true

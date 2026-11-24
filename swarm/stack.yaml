@@ -1,0 +1,48 @@
+# Démo pédagogique, un manager unique et une DB mono-instance = PAS de HA.
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: guildops
+      POSTGRES_USER: guildops
+      POSTGRES_PASSWORD_FILE: /run/secrets/guildops_db_password
+    secrets: [guildops_db_password]
+    volumes:
+      - guildops-db:/var/lib/postgresql/data
+    networks: [private]
+    deploy:
+      replicas: 1
+      placement:
+        constraints: [node.role == manager]
+  api:
+    image: guildops-hosting-lab:local
+    environment:
+      DB_HOST: postgres
+      DB_NAME: guildops
+      DB_USER: guildops
+      DB_PASSWORD_FILE: /run/secrets/guildops_db_password
+      LAB_RELEASE: v1
+    secrets: [guildops_db_password]
+    ports:
+      - target: 8080
+        published: 8080
+        protocol: tcp
+        mode: ingress
+    networks: [private]
+    deploy:
+      replicas: 2
+      update_config:
+        parallelism: 1
+        delay: 5s
+      rollback_config:
+        parallelism: 1
+      restart_policy:
+        condition: any
+secrets:
+  guildops_db_password:
+    file: ../.local/db_password
+volumes:
+  guildops-db:
+networks:
+  private:
+    driver: overlay
