@@ -14,16 +14,16 @@ Pour chaque TP, le parcours est le même : **repérer les fichiers → lire la n
 
 **Ressources de départ**
 
-- [Kit GuildOps Hosting Lab sur Google Drive](https://drive.google.com/file/d/1YNcQ2RpMIlkUrHAYqVPtwAPZgrNBvvx5/view?usp=drivesdk) : code et fichiers du laboratoire.
+- [Dépôt GuildOps Hosting Lab sur GitHub](https://github.com/sebastien-ribiere/infal105-hosting-lab) : code, manifestes, scripts et versions PDF/DOCX du cahier.
 - Les liens vers **Docker, Kubernetes, PostgreSQL, AWS et Azure** sont fournis au début du TP concerné. Ils pointent vers la documentation des éditeurs, pas vers des tutoriels aléatoires.
-- Pour les exercices, les noms de fichiers désignent des **chemins dans le kit**. Les noms sont conservés pour la version GitHub à venir.
+- Les noms de fichiers cités dans les exercices sont les **chemins du dépôt GitHub** : ils sont consultables directement dans l’arborescence du projet.
 
 **Avant de demander de l'aide :** relever la commande, le message d'erreur complet, l'environnement actif et la dernière action réussie.
 
 ## Démarrage et organisation
 
-1. Extraire entièrement le ZIP. Se placer dans le dossier qui contient `compose.yaml`, `Dockerfile`, `app/`, `scripts/` et `k8s/`.
-2. Travailler **en binôme**. Conserver dans un dossier hors de l'archive les commandes, résultats, captures filtrées et décisions. Le fichier `.env` et `.local/` ne doivent jamais être remis.
+1. Récupérer le dépôt : `git clone https://github.com/sebastien-ribiere/infal105-hosting-lab.git` puis `cd infal105-hosting-lab`. Sans Git : sur GitHub, choisir **Code → Download ZIP**, puis extraire le ZIP. Vérifier la présence de `compose.yaml`, `Dockerfile`, `app/`, `scripts/` et `k8s/`.
+2. Travailler **en binôme**. Conserver dans un dossier séparé du dépôt les commandes, résultats, captures filtrées et décisions. Le fichier `.env` et `.local/` ne doivent jamais être remis.
 3. Utiliser un terminal Bash Linux/WSL2 pour les commandes Bash. Avec PowerShell : `Copy-Item .env.example .env`, puis `./scripts/verify.ps1` pour les tests HTTP ; la variante de restauration PowerShell est également fournie. Si l'environnement est incompatible avec Swarm ou kind, choisir le **plan B validé par le formateur**.
 4. Ne pas démarrer **Compose**, **Swarm** et le `port-forward` Kubernetes sur le port 8080 en parallèle. Terminer un environnement avant le suivant.
 

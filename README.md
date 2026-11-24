@@ -11,6 +11,13 @@ Ce dépôt est **indépendant du projet de jeu GuildOps**. Il n'intègre pas les
 
 ### Pour commencer
 
+```bash
+git clone https://github.com/sebastien-ribiere/infal105-hosting-lab.git
+cd infal105-hosting-lab
+```
+
+Sans Git, utiliser **Code → Download ZIP** sur la page du dépôt, puis extraire le ZIP.
+
 1. Lire le [cahier de TP](TP_ETUDIANTS.md) puis les ressources indiquées au début du TP.
 2. Travailler depuis la racine du projet ; ne jamais committer `.env`, `.local/` ni un secret réel.
 3. Ne pas déployer dans le cloud sans autorisation du formateur, quotas connus et plan de suppression.
@@ -29,7 +36,7 @@ Docker Engine, plugin Compose (`docker compose version`), Git facultatif, `curl`
 
 ## 1. Docker Compose
 
-Depuis **la racine** de l'archive :
+Depuis **la racine** du dépôt cloné (ou du ZIP GitHub extrait) :
 
 ```bash
 cp .env.example .env

@@ -4,7 +4,7 @@ Ce fichier documente **ce qui a été effectivement vérifié**. Il n'atteste pa
 
 ## Vérifications effectuées
 
-- ZIP original téléchargé depuis le Drive correspondant au lien des deux présentations ; le kit examiné est la version **réelle** de cette archive, pas une reconstitution.
+- Kit initial vérifié depuis son archive source avant publication sur GitHub ; le laboratoire publié dérive de cette version, et non d’une reconstruction.
 - Contrôle de syntaxe du code Python (`py_compile`), des scripts Bash (`bash -n`), des YAML via PyYAML, de la grille CSV et de l'arborescence.
 - Tests HTTP locaux via `python -m unittest discover -s tests -v` : `/healthz`, 404, JSON invalide, score invalide, nom vide et `/readyz` indisponible si la DB simulée est absente.
 - `scripts/verify.sh` testé contre un serveur HTTP simulant les réponses attendues ; modes complet et `HEALTH_ONLY` valides.
